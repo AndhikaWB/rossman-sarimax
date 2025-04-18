@@ -1,0 +1,85 @@
+---
+title: "TSA"
+format:
+ html:
+  code-fold: true
+editor:
+ render-on-save: true
+---
+
+```{r setup, include=FALSE}
+library(magrittr)
+library(tsibble)
+library(feasts)
+library(ggplot2)
+library(patchwork)
+```
+
+```{r}
+c(-12, -c(-1, 1))
+
+polyroot(c(-12, -c(-1, 1)))
+
+Mod(polyroot(c(-12, -c(-1, 1))))
+```
+
+```{r, fig.height=4}
+set.seed(1)
+
+ar1 <- tsibble(idx = seq_len(100), sim = 10 + arima.sim(list(ma = -0.7), n = 100), index = idx)
+
+p1 <- ar1 %>% autoplot(sim) + labs(y = "", title = "MA(1) with ε = -0.7")
+p2 <- ar1 %>% ACF(sim) %>% autoplot() + labs(y = "", title = "ACF")
+p3 <- ar1 %>% PACF(sim) %>% autoplot() + labs(y = "", title = "PACF")
+
+p1 / (p2 + p3)
+```
+
+```{r, fig.height=4}
+set.seed(1)
+
+ar1 <- tsibble(idx = seq_len(100), sim = 10 + arima.sim(list(ma = 0.7), n = 100), index = idx)
+
+p1 <- ar1 %>% autoplot(sim) + labs(y = "", title = "MA(1) with ε = 0.7")
+p2 <- ar1 %>% ACF(sim) %>% autoplot() + labs(y = "", title = "ACF")
+p3 <- ar1 %>% PACF(sim) %>% autoplot() + labs(y = "", title = "PACF")
+
+p1 / (p2 + p3)
+```
+
+```{r, fig.height=4}
+set.seed(1)
+
+# If ar > 1 the code will complain that it's not stationary
+ar1 <- tsibble(idx = seq_len(100), sim = 10 + arima.sim(list(ma = c(0.29, 0.7)), n = 100), index = idx)
+
+p1 <- ar1 %>% autoplot(sim) + labs(y = "", title = "MA(2) with ε = [0.29, 0.7]")
+p2 <- ar1 %>% ACF(sim) %>% autoplot() + labs(y = "", title = "ACF")
+p3 <- ar1 %>% PACF(sim) %>% autoplot() + labs(y = "", title = "PACF")
+
+p1 / (p2 + p3)
+```
+
+```{r, fig.height=4}
+set.seed(1)
+
+ar1 <- tsibble(idx = seq_len(100), sim = 10 + arima.sim(list(ma = c(-0.4, -0.7)), n = 100), index = idx)
+
+p1 <- ar1 %>% autoplot(sim) + labs(y = "", title = "MA(2) with ε = [-0.4, -0.7]")
+p2 <- ar1 %>% ACF(sim) %>% autoplot() + labs(y = "", title = "ACF")
+p3 <- ar1 %>% PACF(sim) %>% autoplot() + labs(y = "", title = "PACF")
+
+p1 / (p2 + p3)
+```
+
+```{r, fig.height=4}
+set.seed(1)
+
+ar1 <- tsibble(idx = seq_len(100), sim = 10 + arima.sim(list(ma = c(0.4, -0.7)), n = 100), index = idx)
+
+p1 <- ar1 %>% autoplot(sim) + labs(y = "", title = "MA(2) with ε = [0.4, -0.7]")
+p2 <- ar1 %>% ACF(sim) %>% autoplot() + labs(y = "", title = "ACF")
+p3 <- ar1 %>% PACF(sim) %>% autoplot() + labs(y = "", title = "PACF")
+
+p1 / (p2 + p3)
+```
