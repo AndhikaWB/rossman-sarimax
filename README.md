@@ -2,9 +2,9 @@
 
 The [dataset](https://www.kaggle.com/c/rossmann-store-sales) contains 1115 unique Rossman stores, and they are categorized into 4 groups (A, B, C, D) based on their characteristic.
 
-The original competition is meant to forecast the sales of each store, but since I use it to learn SARIMAX, I decided to aggregate the stores from the same category into a single time series.
+The original competition is meant to forecast the sales of each store, but since I use it to learn SARIMAX, I decided to aggregate the stores from the same group into a single time series.
 
-Store type B is particularly interesting, because it opens on weekend and most holidays, making the characteristic totally different than the others. Here's the performance of each model on store type B:
+Store type B is particularly interesting, because it opens on weekend and most holidays, making the characteristic totally different than the other stores. Here's the performance of each model on store type B:
 
 |Model|RMSE|
 |---|---|
@@ -12,17 +12,23 @@ Store type B is particularly interesting, because it opens on weekend and most h
 |SARIMA (weekly seasonality)|1393|
 |SARIMAX (plus yearly seasonality)|1094|
 
-The forecast visualization can be seen at the end of problem 2. Other interesting parts, such as EDA and the order selection from the ACF/PACF plot can be seen directly on the [notebook](notebook.ipynb).
+The app preview can be seen on the Streamlit section below. Other interesting parts, such as EDA and the order selection from the ACF/PACF plot can be seen directly in the [notebook](notebook.ipynb).
 
 ## Project Stack
-
-The projects use these three as the main dependencies (Python):
 
 |Dependency|Usage|
 |---|---|
 |Polars|Dataframe|
 |Plotly|Visualization|
 |StatsForecast|Forecasting|
+|Streamlit|Web app|
+
+## Streamlit
+
+<details>
+  <summary>Show screenshot</summary>
+  <img src="img/image-6.png">
+</details>
 
 ## Highlighted Problems
 
