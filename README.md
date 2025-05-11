@@ -25,6 +25,8 @@ The app preview can be seen on the Streamlit section below. Other interesting pa
 
 ## Streamlit
 
+Online demo can be accessed on my [Streamlit Cloud](https://rossman-sarimax-h8lgrvjtnyrbnmt76cbuyn.streamlit.app/).
+
 <details>
   <summary>Show screenshot</summary>
   <img src="img/image-6.png">
